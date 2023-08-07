@@ -34,6 +34,7 @@
       }
 
       function postMessageToiOS(postData) {
+        console.log("클릭함")
         window.webkit.messageHandlers.callBackHandler.postMessage(postData);
       }
 
