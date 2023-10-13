@@ -32,15 +32,6 @@
         // console.log("onReceivedActivityMessageViaJavascriptInterface " + event);
     }
 
-    // 안드로이드와 통신하기 위한 브릿지 함수 추가
-    function postMessageToAndroid(postData) {
-        window.AndroidBridge.postMessageToAndroid(JSON.stringify(postData));
-    }
-
-    // iOS와 통신하기 위한 브릿지 함수 추가
-    function postMessageToiOS(postData) {
-        window.webkit.messageHandlers.callBackHandler.postMessage(postData);
-    }
 
     var element_layer = document.getElementById("layer");
     function execDaumPostcode() {
@@ -59,11 +50,8 @@
                     jibunAddress: jibunAddress,
                     zonecode: data.zonecode,
                 };
-
-                // 안드로이드로 데이터 전달
-                postMessageToAndroid(postData);
-                // iOS로 데이터 전달
-                postMessageToiOS(postData);
+                
+                window.webkit.messageHandlers.callBackHandler.postMessage(postData);
             },
             width: "100%",
             height: "100%",
