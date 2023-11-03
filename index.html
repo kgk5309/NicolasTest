@@ -9,10 +9,14 @@
       window.ReactNativeWebView.postMessage("buttonClick");
     }
 
-    function displayImage(data) {
-      var imgElement = document.getElementById("image");
-      imgElement.src = data;
-    }
+    receiver.addEventListener('message', (event) => {
+      const { type, data } = JSON.parse(event.data);
+      console.log(type)
+      console.log(data)
+      const handler = receiveWebviewMessageMap.get(type);
+      handler?.(data);
+    });
+    
   </script>
 </head>
 <body>
