@@ -11,8 +11,10 @@
 
     receiver.addEventListener('message', (event) => {
       const { type, data } = JSON.parse(event.data);
-      console.log(type)
-      console.log(data)
+      if (type === "sendImage") {
+        document.getElementById("id").innerText = type
+        document.getElementById("imageText").innerText = data
+      }
       const handler = receiveWebviewMessageMap.get(type);
       handler?.(data);
     });
@@ -24,6 +26,7 @@
     click me
   </button>
   <span id="id">아이디가 없습니다.</span>
+  <span id="imageText">이미지 텍스트</span>
   <img id="image" src="" style="width: 100%; height: auto;" />
 </body>
 </html>
