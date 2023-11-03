@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +8,18 @@
     function doAction() {
       window.ReactNativeWebView.postMessage("buttonClick");
     }
+
+    function displayImage(data) {
+      var imgElement = document.getElementById("image");
+      imgElement.src = data;
+    }
   </script>
 </head>
-
 <body>
   <button onclick="doAction()">
     click me
   </button>
   <span id="id">아이디가 없습니다.</span>
+  <img id="image" src="" style="width: 100%; height: auto;" />
 </body>
-
 </html>
