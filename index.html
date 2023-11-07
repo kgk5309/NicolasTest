@@ -32,6 +32,7 @@
     receiver.addEventListener('message', (e) => {
       const { type, data } = JSON.parse(e.data);
       document.getElementById('id').innerText = data
+      alert(type)
     } );
     
   </script>
