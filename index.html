@@ -16,9 +16,13 @@
 
     receiver.addEventListener('message', (event) => {
       const { type, data } = JSON.parse(event.data);
-    
+
+      document.getElementById("id").innerText(type)
+      document.getElementById("imageText").innerText(data)
+      
       const handler = receiveWebviewMessageMap.get(type);
       handler?.(data);
+      
     });
     
   </script>
