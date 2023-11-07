@@ -18,7 +18,6 @@
             return "other";
         }
     }
-
     
     function cameraAction() {
       window.ReactNativeWebView.postMessage("camera");
@@ -32,6 +31,9 @@
     receiver.addEventListener('message', (e) => {
       const { type, data } = JSON.parse(e.data);
       document.getElementById('imageSpan').innerText = data
+      if ( type == "photo" ) {
+        document.getElementById('img').src = data
+      }
     } );
     
   </script>
@@ -46,5 +48,7 @@
   <br>
   <span id="imageSpan">이미지 데이터가 없습니다.</span>
   <br>
+  <img id="img" src="https://cdn.aitimes.kr/news/photo/202303/27617_41603_044.jpg">
+
 </body>
 </html>
