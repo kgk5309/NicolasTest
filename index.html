@@ -20,11 +20,11 @@
     }
 
     
-    function nativeAction(type) {
-      window.ReactNativeWebView.postMessage(type);
+    function cameraAction() {
+      window.ReactNativeWebView.postMessage('camera');
     }
-    function webviewAction() {
-      alert("webviewAction")
+    function galleryAction() {
+      window.ReactNativeWebView.postMessage('gallery');
     }
     
     const receiver = checkMobile() === "ios" ? window : document;
@@ -37,10 +37,10 @@
   </script>
 </head>
 <body>
-  <button onclick="nativeAction('camera')">
+  <button onclick="cameraAction()">
     카메라
   </button>
-  <button onclick="nativeAction('gallery')">
+  <button onclick="galleryAction()">
     갤러리
   </button>
   <br>
