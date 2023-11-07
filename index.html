@@ -30,7 +30,6 @@
     const receiver = checkMobile() === "ios" ? window : document;
 
     receiver.addEventListener('message', (e) => {
-      alert('성공했음')
       const { type, data } = JSON.parse(e.data);
       document.getElementById('imageSpan').innerText = data
     } );
