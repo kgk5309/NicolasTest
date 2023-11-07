@@ -20,8 +20,8 @@
     }
 
     
-    function nativeAction() {
-      window.ReactNativeWebView.postMessage("nativeAction");
+    function nativeAction(type) {
+      window.ReactNativeWebView.postMessage(type);
     }
     function webviewAction() {
       alert("webviewAction")
@@ -31,23 +31,20 @@
 
     receiver.addEventListener('message', (e) => {
       const { type, data } = JSON.parse(e.data);
-      document.getElementById('id').innerText = data
-      alert(type)
+      document.getElementById('imageSpan').innerText = data
     } );
     
   </script>
 </head>
 <body>
-  <button onclick="nativeAction()">
-    네이티브 액션
+  <button onclick="nativeAction('camera')">
+    카메라
   </button>
-  <button onclick="webviewAction()">
-    웹뷰 액션
+  <button onclick=="nativeAction('gallery')">
+    갤러리
   </button>
-  <span id="id">아이디가 없습니다.</span>
   <br>
-  <span id="imageText">이미지 텍스트</span>
+  <span id="imageSpan">이미지 데이터가 없습니다.</span>
   <br>
-  <img id="image" src="" style="width: 100%; height: auto;" />
 </body>
 </html>
