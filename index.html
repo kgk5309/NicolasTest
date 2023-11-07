@@ -30,7 +30,7 @@
     const receiver = checkMobile() === "ios" ? window : document;
 
     receiver.addEventListener('message', (e) => {
-      document.getElementById("id").innerText(e.data)
+      document.getElementById('id').innerText = e.data
       alert(e.type)
     } );
     
