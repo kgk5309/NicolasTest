@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function doAction() {
-      window.ReactNativeWebView.postMessage("buttonClick");
+    function nativeAction() {
+      window.ReactNativeWebView.postMessage("nativeAction");
+    }
+    function webviewAction() {
+      alert("webviewAction")
     }
 
     receiver.addEventListener('message', (event) => {
@@ -22,8 +25,11 @@
   </script>
 </head>
 <body>
-  <button onclick="doAction()">
-    click me
+  <button onclick="nativeAction()">
+    네이티브 액션
+  </button>
+  <button onclick="webviewAction()">
+    웹뷰 액션
   </button>
   <span id="id">아이디가 없습니다.</span>
   <br>
