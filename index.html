@@ -12,6 +12,15 @@
       alert("webviewAction")
     }
     
+    const receiver = platform === ios ? window : document;
+
+    receiver.addEventListener('message', (event) => {
+      const { type, data } = JSON.parse(event.data);
+    
+      const handler = receiveWebviewMessageMap.get(type);
+      handler?.(data);
+    });
+    
   </script>
 </head>
 <body>
