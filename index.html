@@ -21,10 +21,10 @@
 
     
     function cameraAction() {
-      window.ReactNativeWebView.postMessage('camera');
+      window.ReactNativeWebView.postMessage("camera");
     }
     function galleryAction() {
-      window.ReactNativeWebView.postMessage('gallery');
+      window.ReactNativeWebView.postMessage("gallery");
     }
     
     const receiver = checkMobile() === "ios" ? window : document;
