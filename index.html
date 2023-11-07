@@ -27,7 +27,7 @@
       alert("webviewAction")
     }
     
-    const receiver = checkMobile() === ios ? window : document;
+    const receiver = checkMobile() === "ios" ? window : document;
 
     receiver.addEventListener('message', (event) => {
       const { type, data } = JSON.parse(event.data);
