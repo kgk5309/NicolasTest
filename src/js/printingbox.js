@@ -47,7 +47,7 @@ function getLoginData() {
 }
 const receiver = checkMobile() === "ios" ? window : document;
 
-receiver.addEventListener(_, (e) => {
+receiver.addEventListener('message', (e) => {
     const { data } = JSON.parse(e.data);
     document.getElementById("get-data").innerText = data
 });
