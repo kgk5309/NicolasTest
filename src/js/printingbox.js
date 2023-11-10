@@ -17,7 +17,7 @@ function loginAction() {
         window.ReactNativeWebView.postMessage(
             JSON.stringify({
                 type: "login",
-                data: document.getElementById("id-data"),
+                data: document.getElementById("id-data").value,
             })
         );
         return;
