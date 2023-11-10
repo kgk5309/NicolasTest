@@ -1,57 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script>
-    function checkMobile(){
-        var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
-        if ( varUA.indexOf('android') > -1) {
-            //안드로이드
-            return "android";
-        } else if ( varUA.indexOf("iphone") > -1||varUA.indexOf("ipad") > -1||varUA.indexOf("ipod") > -1 ) {
-            //IOS
-            return "ios";
-        } else {
-            //아이폰, 안드로이드 외
-            return "other";
-        }
-    }
-    
-    function cameraAction() {
-      window.ReactNativeWebView.postMessage("camera");
-    }
-    function galleryAction() {
-      window.ReactNativeWebView.postMessage("gallery");
-    }
-    
-    const receiver = checkMobile() === "ios" ? window : document;
-
-    receiver.addEventListener('message', (e) => {
-      const { type, data } = JSON.parse(e.data);
-      document.getElementById('imageSpan').innerText = data
-      if ( type == "photo" ) {
-        document.getElementById('img').src = data
-      }
-      if ( type == "androidPhoto" ) {
-        document.getElementById('androidImage').innerHtml = data
-      }
-    } );
-    
-  </script>
+  <title>Nicolas Test Page</title>
 </head>
+
 <body>
-  <button onclick="cameraAction()">
-    카메라
-  </button>
-  <button onclick="galleryAction()">
-    갤러리
-  </button>
+
+  <a href="./src/html/phampick.html">팜픽 테스트 페이지</a>
   <br>
-  <span id="imageSpan">이미지 데이터가 없습니다.</span>
-  <br>
-  <img style="width:100%" id="img" src="https://cdn.aitimes.kr/news/photo/202303/27617_41603_044.jpg">
-  <span id="androidImage></span>
+  <a href="./src/html/printingbox.html">프린팅박스 테스트 페이지</a>
 </body>
+
 </html>
