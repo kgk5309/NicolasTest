@@ -21,7 +21,7 @@ function loginAction() {
 
     var data = JSON.stringify({
         type: "login",
-        data: document.getElementById("id-data").valueata
+        data: document.getElementById("id-data").value
     })
 
     if (checkMobile() == "android") {
