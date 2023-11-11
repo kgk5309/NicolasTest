@@ -48,6 +48,7 @@ function logoutAction() {
         );
         return;
     }
+
     if (checkMobile() == "ios") {
         setState("아이폰 로그아웃")
         window.webkit.messageHandlers.logout.postMessage()
