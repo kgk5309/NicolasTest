@@ -21,7 +21,7 @@ function loginAction() {
 
     var data = JSON.stringify({
         type: "login",
-        data: loginDdocument.getElementById("id-data").valueata
+        data: document.getElementById("id-data").valueata
     })
 
     if (checkMobile() == "android") {
@@ -39,10 +39,12 @@ function loginAction() {
 
 // 네이티브 로그인 정보 초기화 기능
 function logoutAction() {
+
+    var data = JSON.stringify({
+        type: "logout"
+    })
+
     if (checkMobile() == "android") {
-        var data = JSON.stringify({
-            type: "logout"
-        })
         setState("안드로이드 로그아웃")
         window.ReactNativeWebView.postMessage(data);
         return;
