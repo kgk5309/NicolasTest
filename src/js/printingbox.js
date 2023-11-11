@@ -82,6 +82,6 @@ receiver.addEventListener('message', (e) => {
     document.getElementById("get-data").innerText = data
 });
 
-function helloWorld(data) {
+function getIosData(data) {
     setState(data)
 }
