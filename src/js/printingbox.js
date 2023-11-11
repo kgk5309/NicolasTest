@@ -1,7 +1,3 @@
-function setState(state) {
-    document.getElementById("state").innerText = state
-}
-
 function checkMobile() {
     var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
     if (varUA.indexOf('android') > -1) {
@@ -16,12 +12,12 @@ function checkMobile() {
     }
 }
 
+// 네이티브 로그인 정보 저장기능
 function loginAction() {
 
     var loginData = document.getElementById("id-data").value
 
     if (checkMobile() == "android") {
-        setState('android로그인 호출함');
         window.ReactNativeWebView.postMessage(JSON.stringify({
             type: "login",
             data: loginData
@@ -30,11 +26,12 @@ function loginAction() {
     }
 
     if (checkMobile() == 'ios') {
-        setState('ios로그인 호출함');
         window.webkit.messageHandlers.login.postMessage(loginData)
     }
 
 }
+
+// 네이티브 로그인 정보 초기화 기능
 function logoutAction() {
     if (checkMobile() == "android") {
         window.ReactNativeWebView.postMessage(
@@ -44,9 +41,14 @@ function logoutAction() {
         );
         return;
     }
+    if (checkMobile() == "ios") {
+        window.webkit.messageHandlers.logout.postMessage()
+    }
     document.getElementById("id-data").value = ""
     document.getElementById("get-data").innerText = ""
 }
+
+// 저장된 로그인 정보 가져오기 기능
 function getLoginData() {
     if (checkMobile() == "android") {
         window.ReactNativeWebView.postMessage(
@@ -55,6 +57,9 @@ function getLoginData() {
             })
         );
         return;
+    }
+    if (checkMobile() == "ios") {
+        window.webkit.messageHandlers.getLoginData.postMessage()
     }
 }
 const receiver = checkMobile() === "ios" ? window : document;
