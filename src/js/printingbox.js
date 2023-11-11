@@ -81,3 +81,7 @@ receiver.addEventListener('message', (e) => {
     const { data } = JSON.parse(e.data);
     document.getElementById("get-data").innerText = data
 });
+
+function helloWorld(data) {
+    setState(data)
+}
