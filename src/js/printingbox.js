@@ -1,3 +1,7 @@
+function setState(state) {
+    document.getElementById("state").innerText = state
+}
+
 function checkMobile() {
     var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
     if (varUA.indexOf('android') > -1) {
@@ -14,18 +18,22 @@ function checkMobile() {
 
 function loginAction() {
 
-    var loginData = JSON.stringify({
-        type: "login",
-        data: document.getElementById("id-data").value,
-    })
+    var loginData = document.getElementById("id-data").value
 
     if (checkMobile() == "android") {
-        window.ReactNativeWebView.postMessage(loginData);
+        setState('android로그인 호출함');
+        window.ReactNativeWebView.postMessage(JSON.stringify({
+            type: "login",
+            data: loginData
+        }));
         return;
     }
+
     if (checkMobile() == 'ios') {
-        webkit.login.postMessage(loginData);
+        setState('ios로그인 호출함');
+        window.webkit.messageHandlers.login.postMessage(loginData)
     }
+
 }
 function logoutAction() {
     if (checkMobile() == "android") {
