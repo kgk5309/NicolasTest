@@ -24,7 +24,7 @@ function loginAction() {
         return;
     }
     if (checkMobile() == 'ios') {
-        window.webkit.messageHandlers.callbackHandler.postMessage(loginData);
+        webkit.login.postMessage(loginData);
     }
 }
 function logoutAction() {
