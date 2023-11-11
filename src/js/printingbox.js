@@ -13,14 +13,18 @@ function checkMobile() {
 }
 
 function loginAction() {
+
+    var loginData = JSON.stringify({
+        type: "login",
+        data: document.getElementById("id-data").value,
+    })
+
     if (checkMobile() == "android") {
-        window.ReactNativeWebView.postMessage(
-            JSON.stringify({
-                type: "login",
-                data: document.getElementById("id-data").value,
-            })
-        );
+        window.ReactNativeWebView.postMessage(loginData);
         return;
+    }
+    if (checkMobile() == 'ios') {
+        window.webkit.messageHandlers.callbackHandler.postMessage(loginData);
     }
 }
 function logoutAction() {
