@@ -19,20 +19,20 @@ function checkMobile() {
 // 네이티브 로그인 정보 저장기능
 function loginAction() {
 
-    var loginData = document.getElementById("id-data").value
+    var data = JSON.stringify({
+        type: "login",
+        data: loginDdocument.getElementById("id-data").valueata
+    })
 
     if (checkMobile() == "android") {
         setState("안드로이드 로그인")
-        window.ReactNativeWebView.postMessage(JSON.stringify({
-            type: "login",
-            data: loginData
-        }));
+        window.ReactNativeWebView.postMessage(data);
         return;
     }
 
     if (checkMobile() == 'ios') {
         setState("아이폰 로그인")
-        window.webkit.messageHandlers.login.postMessage(loginData)
+        window.webkit.messageHandlers.messageHandler.postMessage(data)
     }
 
 }
@@ -40,18 +40,17 @@ function loginAction() {
 // 네이티브 로그인 정보 초기화 기능
 function logoutAction() {
     if (checkMobile() == "android") {
+        var data = JSON.stringify({
+            type: "logout"
+        })
         setState("안드로이드 로그아웃")
-        window.ReactNativeWebView.postMessage(
-            JSON.stringify({
-                type: "logout"
-            })
-        );
+        window.ReactNativeWebView.postMessage(data);
         return;
     }
 
     if (checkMobile() == "ios") {
         setState("아이폰 로그아웃")
-        window.webkit.messageHandlers.logout.postMessage()
+        window.webkit.messageHandlers.messageHandler.postMessage(data)
     }
     document.getElementById("id-data").value = ""
     document.getElementById("get-data").innerText = ""
@@ -59,18 +58,19 @@ function logoutAction() {
 
 // 저장된 로그인 정보 가져오기 기능
 function getLoginData() {
+    var data = JSON.stringify({
+        type: "getLoginData"
+    })
+
     if (checkMobile() == "android") {
         setState("안드로이드 로그인 데이터 Get")
-        window.ReactNativeWebView.postMessage(
-            JSON.stringify({
-                type: "getLoginData"
-            })
-        );
+        window.ReactNativeWebView.postMessage(data);
         return;
     }
+
     if (checkMobile() == "ios") {
         setState("아이폰 로그인 데이터 Get")
-        window.webkit.messageHandlers.getLoginData.postMessage()
+        window.webkit.messageHandlers.messageHandler.postMessage(data)
     }
 }
 const receiver = checkMobile() === "ios" ? window : document;
