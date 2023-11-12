@@ -1,6 +1,9 @@
 function setState(state) {
     document.getElementById("state").innerText = state
 }
+function setSession(session) {
+    document.getElementById("session-id").innerText = session
+}
 
 function checkMobile() {
     var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
@@ -18,6 +21,8 @@ function checkMobile() {
 
 // 네이티브 로그인 정보 저장기능
 function loginAction() {
+    sessionStorage.setItem("user-id", document.getElementById("id-data").value)
+    setSession(sessionStorage.getItem("user-id"))
 
     var data = JSON.stringify({
         type: "login",
@@ -40,6 +45,9 @@ function loginAction() {
 // 네이티브 로그인 정보 초기화 기능
 function logoutAction() {
 
+    sessionStorage.removeItem("user-id")
+    setSession(sessionStorage.getItem("user-id"))
+
     var data = JSON.stringify({
         type: "logout"
     })
@@ -55,11 +63,13 @@ function logoutAction() {
         window.webkit.messageHandlers.messageHandler.postMessage(data)
     }
     document.getElementById("id-data").value = ""
-    document.getElementById("get-data").innerText = ""
+    document.getElementById("get-data").innerText = "가져온 데이터가 없습니다."
 }
 
 // 저장된 로그인 정보 가져오기 기능
 function getLoginData() {
+
+
     var data = JSON.stringify({
         type: "getLoginData"
     })
@@ -73,7 +83,11 @@ function getLoginData() {
     if (checkMobile() == "ios") {
         setState("아이폰 로그인 데이터 Get")
         window.webkit.messageHandlers.messageHandler.postMessage(data)
+        return
     }
+
+    document.getElementById("get-data").innerText = sessionStorage.getItem("user-id")
+
 }
 
 const receiver = checkMobile() === "ios" ? window : document;
@@ -81,7 +95,6 @@ const receiver = checkMobile() === "ios" ? window : document;
 receiver.addEventListener('message', (e) => {
     const { userData } = JSON.parse(e.data);
     getIosData(userData)
-
 });
 
 function getIosData(data) {
