@@ -92,12 +92,16 @@ function getLoginData() {
 const receiver = checkMobile() === "ios" ? window : document;
 
 receiver.addEventListener('message', (e) => {
-
     const d = e.data;
     getIosData(d)
 });
 
+function getIosData(data) {
+    setSession(data)
+}
+
 function getIosUserData(data) {
+    document.getElementById("get-data").innerText = sessionStorage.getItem("user-id")
     sessionStorage.setItem(data)
     setSession(data)
     setState("가져와짐")
@@ -107,4 +111,12 @@ function openWindow() {
 
     window.open('https://printingbox.kr/point_charge.php')
 
+}
+
+function helloWorld() {
+    document.getElementById("get-data").innerText = "헬로 월드"
+}
+
+function helloWorld2(d) {
+    document.getElementById("get-data").innerText = d
 }
