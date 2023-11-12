@@ -79,7 +79,8 @@ const receiver = checkMobile() === "ios" ? window : document;
 
 receiver.addEventListener('message', (e) => {
     const { data } = JSON.parse(e.data);
-    document.getElementById("get-data").innerText = data
+    getIosData(data)
+
 });
 
 function getIosData(data) {
