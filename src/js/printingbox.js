@@ -75,14 +75,21 @@ function getLoginData() {
         window.webkit.messageHandlers.messageHandler.postMessage(data)
     }
 }
+
 const receiver = checkMobile() === "ios" ? window : document;
 
 receiver.addEventListener('message', (e) => {
-    const { data } = JSON.parse(e.data);
-    getIosData(data)
+    const { userData } = JSON.parse(e.data);
+    getIosData(userData)
 
 });
 
 function getIosData(data) {
     setState(data)
+}
+
+function openWindow() {
+
+    window.open('https://printingbox.kr/point_charge.php')
+
 }
