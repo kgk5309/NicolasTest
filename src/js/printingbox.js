@@ -69,7 +69,6 @@ function logoutAction() {
 // 저장된 로그인 정보 가져오기 기능
 function getLoginData() {
 
-
     var data = JSON.stringify({
         type: "getLoginData"
     })
@@ -93,12 +92,14 @@ function getLoginData() {
 const receiver = checkMobile() === "ios" ? window : document;
 
 receiver.addEventListener('message', (e) => {
-    const { userData } = JSON.parse(e.data);
-    getIosData(userData)
+
+    const d = e.data;
+    getIosData(d)
 });
 
-function getIosData(data) {
-    setState(data)
+function getIosUserData(data) {
+    alert(data)
+    // setState(data)
 }
 
 function openWindow() {
