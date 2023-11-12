@@ -98,8 +98,10 @@ receiver.addEventListener('message', (e) => {
 });
 
 function getIosUserData(data) {
-    alert(data)
-    // setState(data)
+
+    sessionStorage.setItem(data)
+    setSession(data)
+    setState("가져와짐")
 }
 
 function openWindow() {
