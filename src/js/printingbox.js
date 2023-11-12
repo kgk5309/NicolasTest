@@ -96,27 +96,7 @@ receiver.addEventListener('message', (e) => {
     getIosData(d)
 });
 
-function getIosData(data) {
-    setSession(data)
-}
-
 function getIosUserData(data) {
-    document.getElementById("get-data").innerText = sessionStorage.getItem("user-id")
-    sessionStorage.setItem(data)
     setSession(data)
-    setState("가져와짐")
-}
-
-function openWindow() {
-
-    window.open('https://printingbox.kr/point_charge.php')
-
-}
-
-function helloWorld() {
-    document.getElementById("get-data").innerText = "헬로 월드"
-}
-
-function helloWorld2(d) {
-    document.getElementById("get-data").innerText = d
+    sessionStorage.setItem('user-data', data)
 }
