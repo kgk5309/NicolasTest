@@ -97,8 +97,8 @@ receiver.addEventListener('message', (e) => {
     getIosData(d)
 });
 
-function getIosUserData(data) {
-
+function getIosUserData(userData) {
+    const { data } = JSON.parse(userData)
     sessionStorage.setItem(data)
     setSession(data)
     setState("가져와짐")
